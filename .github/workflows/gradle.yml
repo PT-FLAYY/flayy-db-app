@@ -4,30 +4,29 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: 17
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x ./gradlew
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew
 
-      - name: Build Debug APK
-        run: ./gradlew :assembleDebug
+    - name: Build Debug APK
+      run: ./gradlew assembleDebug
 
-      - name: Upload Debug APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: FlayyApp-Debug-APK
-          path: build/outputs/apk/debug/app-debug.apk
+    - name: Upload Debug APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: FlayyApp-Debug-APK
+        path: app/build/outputs/apk/debug/app-debug.apk
