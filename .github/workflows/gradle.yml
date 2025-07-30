@@ -8,19 +8,21 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/[email protected]
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Set up JDK
-        uses: actions/[email protected]
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Make gradle script executable
+      - name: Make gradlew executable
         run: chmod +x ./gradlew
 
-      - name: Build Debug APK
+      - name: Build APK
         run: ./gradlew assembleDebug
 
       - name: List APK files
