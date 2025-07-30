@@ -26,12 +26,13 @@ jobs:
       - name: Build debug APK
         run: ./gradlew assembleDebug
 
-      - name: Show APK path (debugging)
-        run: find . -name "*.apk"
+      - name: Debug APK paths
+        run: |
+          echo "List all APK files:"
+          find . -name "*.apk"
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: app-debug.apk
+          name: debug-apk
           path: app/build/outputs/apk/debug/*.apk
-
