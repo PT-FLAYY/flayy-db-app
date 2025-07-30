@@ -2,9 +2,12 @@ name: Build APK
 
 on:
   push:
+    branches:
+      - main
 
 jobs:
   build:
+    name: Build debug APK
     runs-on: ubuntu-latest
 
     steps:
@@ -20,14 +23,8 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
 
-      - name: Debug folder structure
-        run: ls -R
-
-      - name: Build Debug APK
+      - name: Build APK
         run: ./gradlew assembleDebug
-
-      - name: List all APKs
-        run: find . -name "*.apk"
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
