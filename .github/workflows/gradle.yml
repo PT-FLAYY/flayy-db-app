@@ -1,9 +1,6 @@
 name: Build APK
 
-on:
-  push:
-    branches:
-      - main
+on: [push]
 
 jobs:
   build:
@@ -14,25 +11,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up JDK 17
+      - name: Set up JDK
         uses: actions/setup-java@v3
         with:
+          java-version: '17'
           distribution: 'temurin'
-          java-version: 17
 
-      - name: Grant permission to gradlew
+      - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
 
-      - name: Build debug APK
+      - name: Build APK
         run: ./gradlew assembleDebug
 
-      - name: Debug APK paths
+      - name: Find APK
         run: |
-          echo "List all APK files:"
           find . -name "*.apk"
 
       - name: Upload APK
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: debug-apk
-          path: app/build/outputs/apk/debug/*.apk
+          path: '**/*.apk'
