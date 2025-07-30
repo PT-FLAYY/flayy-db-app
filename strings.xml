@@ -1,0 +1,12 @@
+
+<resources>
+    <string name="app_name">Flayy DB Manager</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="add_number">Add Number</string>
+    <string name="list_numbers">List Numbers</string>
+    <string name="delete_number">Delete Number</string>
+    <string name="owner_tools">Owner Tools</string>
+    <string name="logout">Logout</string>
+</resources>
